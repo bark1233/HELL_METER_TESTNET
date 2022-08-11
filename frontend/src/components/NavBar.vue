@@ -2,7 +2,7 @@
   <div class="main-nav-div">
     <b-navbar class="main-nav" toggleable="sm" type="dark" variant="dark">
       <b-navbar-brand href="#" class="nav-logo">
-        <img src="../assets/logo_Text_Source.png" class="logo d-inline-block align-top" alt="Logo">
+        <img src="../assets/logo.png" class="logo d-inline-block align-top" alt="Logo">
       </b-navbar-brand>
 
       <view-links class="view-links"></view-links>
