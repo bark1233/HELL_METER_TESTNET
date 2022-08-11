@@ -207,7 +207,7 @@ export default Vue.extend({
     },
 
     async fetchPrices() {
-      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=wthell,avalanche-2&vs_currencies=usd');
+      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=wthell,meter-stable&vs_currencies=usd');
       const data = response.data as PriceJson;
       this.bnbPrice = data?.['avalanche-2'].usd;
       this.hellPrice = 2;
