@@ -468,4 +468,47 @@ div.encounter.text-center {
   height: 5em;
   width: 13em;
 }
+
+.encounter {
+  display : flex;
+  justify-content: center;
+}
+
+-.combat-enemy-container {
+  display : flex;
+  margin-bottom: 50px;
+}
+
+.enemy-container {
+  flex : 3;
+}
+
+.enemy-divider {
+  margin-top : 30px;
+}
+
+.enemy-list {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.weapon-selection {
+  border-right : 1px solid #9e8a57;
+}
+
+.weapon-header {
+    justify-content: center;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.enemy-img {
+  position: relative;
+  top: 28px;
+  left: 25px;
+}
+
+
 </style>
