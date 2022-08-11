@@ -1,0 +1,1655 @@
+{
+	"compiler": {
+		"version": "0.6.5+commit.f956cc89"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "owner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "character",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "weapon",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint32",
+						"name": "target",
+						"type": "uint32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint24",
+						"name": "playerRoll",
+						"type": "uint24"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint24",
+						"name": "enemyRoll",
+						"type": "uint24"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint16",
+						"name": "xpGain",
+						"type": "uint16"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "hellGain",
+						"type": "uint256"
+					}
+				],
+				"name": "FightOutcome",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "hellAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "InGameOnlyFundsGiven",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "GAME_ADMIN",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REWARDS_CLAIM_TAX_DURATION",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "REWARDS_CLAIM_TAX_MAX",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "characterID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					}
+				],
+				"name": "approveContractCharacterFor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "weaponID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					}
+				],
+				"name": "approveContractWeaponFor",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "characters",
+				"outputs": [
+					{
+						"internalType": "contract Characters",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimTokenRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "claimXpRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "char",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "wep",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint32",
+						"name": "target",
+						"type": "uint32"
+					}
+				],
+				"name": "fight",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fightRewardBaseline",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fightRewardGasOffset",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fightTraitBonus",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "fightXpGain",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCurrentHour",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hellNeeded",
+						"type": "uint256"
+					}
+				],
+				"name": "getHellNeededFromUserWallet",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "hellNeededFromUserWallet",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_inGameOnlyFunds",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_tokenRewards",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_hellNeeded",
+						"type": "uint256"
+					}
+				],
+				"name": "getHellToSubtract",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "fromInGameOnlyFunds",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fromTokenRewards",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "fromUserWallet",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint32",
+						"name": "target",
+						"type": "uint32"
+					}
+				],
+				"name": "getMonsterPower",
+				"outputs": [
+					{
+						"internalType": "uint24",
+						"name": "",
+						"type": "uint24"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMyCharacters",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMyWeapons",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getOwnRewardsClaimTax",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint24",
+						"name": "basePower",
+						"type": "uint24"
+					},
+					{
+						"internalType": "int128",
+						"name": "weaponMultiplier",
+						"type": "int128"
+					},
+					{
+						"internalType": "uint24",
+						"name": "bonusPower",
+						"type": "uint24"
+					}
+				],
+				"name": "getPlayerPower",
+				"outputs": [
+					{
+						"internalType": "uint24",
+						"name": "",
+						"type": "uint24"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint24",
+						"name": "traitsCWE",
+						"type": "uint24"
+					}
+				],
+				"name": "getPlayerTraitBonusAgainst",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					}
+				],
+				"name": "getRoleMember",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleMemberCount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "char",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "wep",
+						"type": "uint256"
+					}
+				],
+				"name": "getTargets",
+				"outputs": [
+					{
+						"internalType": "uint32[4]",
+						"name": "",
+						"type": "uint32[4]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getTokenRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					}
+				],
+				"name": "getTokenRewardsFor",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "wallet",
+						"type": "address"
+					}
+				],
+				"name": "getTotalHellOwnedBy",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "char",
+						"type": "uint256"
+					}
+				],
+				"name": "getXpRewards",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hellAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "giveInGameOnlyFunds",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hellAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "giveInGameOnlyFundsFromContractBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "hellToken",
+				"outputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "inGameOnlyFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IERC20",
+						"name": "_hellToken",
+						"type": "address"
+					},
+					{
+						"internalType": "contract Characters",
+						"name": "_characters",
+						"type": "address"
+					},
+					{
+						"internalType": "contract Weapons",
+						"name": "_weapons",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IPriceOracle",
+						"name": "_priceOracleHellPerUsd",
+						"type": "address"
+					},
+					{
+						"internalType": "contract IRandoms",
+						"name": "_randoms",
+						"type": "address"
+					}
+				],
+				"name": "initialize",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "attacker",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint8",
+						"name": "defender",
+						"type": "uint8"
+					}
+				],
+				"name": "isTraitEffectiveAgainst",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IRandoms",
+						"name": "_newRandoms",
+						"type": "address"
+					}
+				],
+				"name": "migrateRandoms",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "migrateTo_1ee400a",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract IStakeFromGame",
+						"name": "_stakeFromGame",
+						"type": "address"
+					}
+				],
+				"name": "migrateTo_23b3a8b",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "migrateTo_7dd2a56",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "migrateTo_aa9da90",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "contract Promos",
+						"name": "_promos",
+						"type": "address"
+					}
+				],
+				"name": "migrateTo_ef994e2",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintCharacter",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintCharacterFee",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintWeapon",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "mintWeaponFee",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "oneFrac",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "int128",
+						"name": "usdAmount",
+						"type": "int128"
+					}
+				],
+				"name": "payContract",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "convertedAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "payContractConverted",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "int128",
+						"name": "baseAmount",
+						"type": "int128"
+					}
+				],
+				"name": "payPlayer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "playerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "convertedAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "payPlayerConverted",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "priceOracleHellPerUsd",
+				"outputs": [
+					{
+						"internalType": "contract IPriceOracle",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "promos",
+				"outputs": [
+					{
+						"internalType": "contract Promos",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "randoms",
+				"outputs": [
+					{
+						"internalType": "contract IRandoms",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "recoverHell",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "refillStaminaFee",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "reforgeID",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnID",
+						"type": "uint256"
+					}
+				],
+				"name": "reforgeWeapon",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "reforgeWeaponFee",
+				"outputs": [
+					{
+						"internalType": "int128",
+						"name": "",
+						"type": "int128"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "max",
+						"type": "uint256"
+					}
+				],
+				"name": "setCharacterLimit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "cents",
+						"type": "uint256"
+					}
+				],
+				"name": "setCharacterMintValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "points",
+						"type": "uint8"
+					}
+				],
+				"name": "setDurabilityCostFight",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tenthcents",
+						"type": "uint256"
+					}
+				],
+				"name": "setFightRewardBaselineValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "cents",
+						"type": "uint256"
+					}
+				],
+				"name": "setFightRewardGasOffsetValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "average",
+						"type": "uint256"
+					}
+				],
+				"name": "setFightXpGain",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "cents",
+						"type": "uint256"
+					}
+				],
+				"name": "setReforgeWeaponValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "points",
+						"type": "uint8"
+					}
+				],
+				"name": "setStaminaCostFight",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "cents",
+						"type": "uint256"
+					}
+				],
+				"name": "setWeaponMintValue",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakeFromGameImpl",
+				"outputs": [
+					{
+						"internalType": "contract IStakeFromGame",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "stakeUnclaimedRewards",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalInGameOnlyFunds",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint96",
+						"name": "playerData",
+						"type": "uint96"
+					}
+				],
+				"name": "unpackFightData",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "charTrait",
+						"type": "uint8"
+					},
+					{
+						"internalType": "uint24",
+						"name": "basePowerLevel",
+						"type": "uint24"
+					},
+					{
+						"internalType": "uint64",
+						"name": "timestamp",
+						"type": "uint64"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "int128",
+						"name": "usdAmount",
+						"type": "int128"
+					}
+				],
+				"name": "usdToHell",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint24",
+						"name": "playerBasePower",
+						"type": "uint24"
+					},
+					{
+						"internalType": "int128",
+						"name": "wepMultiplier",
+						"type": "int128"
+					},
+					{
+						"internalType": "uint24",
+						"name": "wepBonusPower",
+						"type": "uint24"
+					},
+					{
+						"internalType": "uint64",
+						"name": "staminaTimestamp",
+						"type": "uint64"
+					},
+					{
+						"internalType": "uint256",
+						"name": "hour",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint32",
+						"name": "target",
+						"type": "uint32"
+					}
+				],
+				"name": "verifyFight",
+				"outputs": [],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "weapons",
+				"outputs": [
+					{
+						"internalType": "contract Weapons",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"methods": {
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}.     * To change a role's admin, use {_setRoleAdmin}."
+				},
+				"getRoleMember(bytes32,uint256)": {
+					"details": "Returns one of the accounts that have `role`. `index` must be a value between 0 and {getRoleMemberCount}, non-inclusive.     * Role bearers are not sorted in any particular way, and their ordering may change at any point.     * WARNING: When using {getRoleMember} and {getRoleMemberCount}, make sure you perform all queries on the same block. See the following https://forum.openzeppelin.com/t/iterating-over-elements-on-enumerableset-in-openzeppelin-contracts/2296[forum post] for more information."
+				},
+				"getRoleMemberCount(bytes32)": {
+					"details": "Returns the number of accounts that have `role`. Can be used together with {getRoleMember} to enumerate all bearers of a role."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`.     * If `account` had not been already granted `role`, emits a {RoleGranted} event.     * Requirements:     * - the caller must have ``role``'s admin role."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account.     * Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced).     * If the calling account had been granted `role`, emits a {RoleRevoked} event.     * Requirements:     * - the caller must be `account`."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`.     * If `account` had been granted `role`, emits a {RoleRevoked} event.     * Requirements:     * - the caller must have ``role``'s admin role."
+				}
+			}
+		},
+		"userdoc": {
+			"methods": {}
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/wthell.sol": "WTHell"
+		},
+		"evmVersion": "istanbul",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 1000
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts-upgradeable/access/AccessControlUpgradeable.sol": {
+			"keccak256": "0xa3c77c9ea6b47301c7ab5bf3addc1d809d13a27a179c4629a1b55308e8633d14",
+			"urls": [
+				"bzz-raw://77a789173aa9454336023580d52fedfb2d5ef0a1ccb3040ba20f5aa56e300aef",
+				"dweb:/ipfs/Qme3CQYH1AywEH1w3mDV3UT6NhMQmjspNnUA6V8yBg77Ac"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/introspection/ERC165Upgradeable.sol": {
+			"keccak256": "0xc6dbbc2f50a7c104377798a37b2acd1a41c1242544b0bb7a9a7c863f0520eb50",
+			"urls": [
+				"bzz-raw://ff3a66f685a49d3750c9b3588770d1ee43ce3cb718e1dc911ac65d8a6d1c1f0d",
+				"dweb:/ipfs/QmVK2mdcbZTZ81YQ1rxWWNbYgy3Gpb3yz3L2qtDPTdx9hu"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/introspection/IERC165Upgradeable.sol": {
+			"keccak256": "0x4784c3f8a520a739dd25d76f514833a653990902d0e21601aed45bda44c87524",
+			"urls": [
+				"bzz-raw://359411cc44a4499f37d46562ef3f348db443f9a699138c1797264d20b14697b7",
+				"dweb:/ipfs/QmUmeQNUwve4MFCc1ace6zMnstqa8S9SZe1nXG9THcpQ5v"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/math/SafeMathUpgradeable.sol": {
+			"keccak256": "0x0dd1e9b19801e3e7d900fbf4182d81e1afd23ad7be39504e33df6bbcba91d724",
+			"urls": [
+				"bzz-raw://5e30d594df25d0651c2cd6f85d856e5fc9f3dbae68d017e1da33eb3c7e2f1ecc",
+				"dweb:/ipfs/QmPgkV99jZr3Zs9ex8dJ5j22oX4wDuDtMCnXNy67bTwgAB"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/proxy/Initializable.sol": {
+			"keccak256": "0xd8e4eb08dcc1d1860fb347ba5ffd595242b9a1b66d49a47f2b4cb51c3f35017e",
+			"urls": [
+				"bzz-raw://7dbc89479d30592e82442edc38053b380f611037a5e6ceafc7bf57a7aa1f0305",
+				"dweb:/ipfs/QmcdYtt56WmjeYvsFjK69FnahnAriw88VzY3XRZwXkQKKN"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC721/ERC721Upgradeable.sol": {
+			"keccak256": "0x83d830f0835976a5b7bb9c416edf06c865208127eb35445dd6c49b20481d7282",
+			"urls": [
+				"bzz-raw://2e023290150a3ec557e4f437164cb5240641cf0a7443fb0a07e3ae52fdcc596b",
+				"dweb:/ipfs/QmYTCHMdzbpgGsCrNVQ5LmfJA6W32YF29vjppn9zSsCRYe"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721EnumerableUpgradeable.sol": {
+			"keccak256": "0x529f3ab127aace61d7d47f3df7a6a2c42dc79bbb3a0ca459d6a861f33698aee6",
+			"urls": [
+				"bzz-raw://dcd2091f8d2b7264c5267aaf72b870f27c5de4eb649313e94836e4b677f7dcfb",
+				"dweb:/ipfs/QmRTBY7izTxqBmAxQ7Mth2khWJZ1uPebsjwbPPfbUdL4xx"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721MetadataUpgradeable.sol": {
+			"keccak256": "0xa981b1f67f60771c18d39e21bad0a2f0f952e2c3faa90b45b982060fc14ee2bd",
+			"urls": [
+				"bzz-raw://dcf9db2d0bd009e25874ee428267c45455613c967f29895e94358914fd4c879d",
+				"dweb:/ipfs/QmYuwT44WF9imBdokjpuFL27eJVh4jqhmaR8DTdVSG5EhC"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721ReceiverUpgradeable.sol": {
+			"keccak256": "0x53552243cd7de0d57a876cbaee3485d4bdc2b1c7d58ff15447cd623a3ddb5cd0",
+			"urls": [
+				"bzz-raw://795c6d0e2058529f2b9e190207bb6dbe208cf793e70cf99999d5bb39029a3887",
+				"dweb:/ipfs/QmTDtUmqY2BwMZjqLPEtz4k1c4DLhEt8p2rSAMN9wNJKQd"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC721/IERC721Upgradeable.sol": {
+			"keccak256": "0x3dab19bb4a63bcbda1ee153ca291694f92f9009fad28626126b15a8503b0e5ff",
+			"urls": [
+				"bzz-raw://ecc8ae8f1f85e11b6f749e147ac298d1d66879f3bfe3d4518b919f7b6151a73b",
+				"dweb:/ipfs/QmYXZfcnCd1N1AaxUTfNQjNHJXAAfVGvae6Bte1SfTCKEz"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
+			"keccak256": "0xfc5ea91fa9ceb1961023b2a6c978b902888c52b90847ac7813fe3b79524165f6",
+			"urls": [
+				"bzz-raw://a6b81dcc816857a9d981386f6d8de49198420ee41cdc0ecade366ab412174d03",
+				"dweb:/ipfs/QmV2vznMT6m9qo3pFMAWi3Nz3UDhwesgwFxeXe6Tod3v8A"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
+			"keccak256": "0xbbf8a21b9a66c48d45ff771b8563c6df19ba451d63dfb8380a865c1e1f29d1a0",
+			"urls": [
+				"bzz-raw://062688aac76e27ab50157a9d645700cf92e3c0d51d3d860be1d2e1a0c04a87d0",
+				"dweb:/ipfs/QmfXxppWAiSTeH8YNn2EtMPDgzrLeJ5rjRq8knEbje88mX"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/EnumerableMapUpgradeable.sol": {
+			"keccak256": "0x6a8e34d051fc71ce49a8a47d050c5b7e77909008c6be7d6780ee9ed87d2d3797",
+			"urls": [
+				"bzz-raw://9764cb2c147e132a2c37be98bde62cd1d66011708d0d3077bab6aa58b00b0472",
+				"dweb:/ipfs/QmWURB8hvNHKd7J7MoMvCxYHSW9LoZGSSJYFhXNX7o4tow"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/EnumerableSetUpgradeable.sol": {
+			"keccak256": "0x20714cf126a1a984613579156d3cbc726db8025d8400e1db1d2bb714edaba335",
+			"urls": [
+				"bzz-raw://8d6e8cc57f51f6c73eccd5b2dbaf3d8486a35148fe0e8bea4b002fbf2a78f381",
+				"dweb:/ipfs/QmawvgjwaqMxyfbFnjxfap1FZ1sPwVgGHaEC41whKdP7N4"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/StringsUpgradeable.sol": {
+			"keccak256": "0x8d1ac29b8a8ed3cfebe5d8774b465441ae8931aaca549f84408e0b29a1191964",
+			"urls": [
+				"bzz-raw://1ddb2fde1fb47d755362333f64099a63ef37c12f2b4b38f80050cb967952058b",
+				"dweb:/ipfs/QmYD25vdrQ1WyzD8png1nStRRPJBmnkf6fY8FthNrKfmmb"
+			]
+		},
+		"contracts/Promos.sol": {
+			"keccak256": "0x7d38363e469b36e70aa963353075002ce027e3d58bae3a973517c6cf02b62027",
+			"urls": [
+				"bzz-raw://ed70d92efa2afdcecae2d360c0058415b4e78759f7bd2104796da1cd35e52d22",
+				"dweb:/ipfs/Qmc9soYyvkBbaidAr6JYdviq33qfntDkFdvwBJjzmnm6i9"
+			]
+		},
+		"contracts/characters.sol": {
+			"keccak256": "0xa1aa55b98bf01c4bff79a1cc4ba160a9f3c3189ef5472fc7ec68f5d2baaf6382",
+			"urls": [
+				"bzz-raw://9608db65991ac5cb0e0c3856f0a241c46f5aaa8b4527342da8b0a039114b77ec",
+				"dweb:/ipfs/QmYzvLALXfn4essFxg9aVAp2eRr1goCmtv5m7ceh8N2bAG"
+			]
+		},
+		"contracts/interfaces/IPriceOracle.sol": {
+			"keccak256": "0x1e8ba9bb97493d03a4a4b1ca9758b0f5809939775e06fd28668f9ddbd530c927",
+			"urls": [
+				"bzz-raw://e10f1429600187416e8ef752a13acae8c83562730187e65823b6f0b766c9f5c8",
+				"dweb:/ipfs/QmZdH61YHA1nB3qiRwZ4kiCfMJhNC3n14WDzJtyYuRCgES"
+			]
+		},
+		"contracts/interfaces/IRandoms.sol": {
+			"keccak256": "0xf295ff46e88aecda61ba393f4618a38d969484edd3566fea2f45f0fa938aa5f6",
+			"urls": [
+				"bzz-raw://d4f452557461c86da893e9fd1b7f3ebc7a421fb2c3c7fe4f2f13f3d4dfe52d39",
+				"dweb:/ipfs/QmNbX2R7UVYNMNfKNgXEt1rt6fw4C3fbLFqseDSQDZF9Z9"
+			]
+		},
+		"contracts/interfaces/IStakeFromGame.sol": {
+			"keccak256": "0x4e054ae3c949fc691ef7b1f1c316c8099c0672b5f045945598b129d7e8f85388",
+			"urls": [
+				"bzz-raw://2d5ead03838abc913b319e9d8e8bd38cf1acb5570408cb27bf574d3628f30902",
+				"dweb:/ipfs/QmYGNfF4GRfoShBnWzUjm4vYwzo7TKkjkcGcJdKYeswwsZ"
+			]
+		},
+		"contracts/interfaces/ITransferCooldownable.sol": {
+			"keccak256": "0x833109477a4e39220908747abbdf4084631a62b099c3fc99ae20dd9b4ef3b2cf",
+			"urls": [
+				"bzz-raw://4bc0c5403e1709328f491d20b126269d130e1547c61fceca434ef828ce16dfd9",
+				"dweb:/ipfs/QmSUKp482J1y6dxNFMPqBQzgcaVVSzj5b5TgnY4QyxUQg3"
+			]
+		},
+		"contracts/util.sol": {
+			"keccak256": "0x70dd9691b7c6b3888d70d94a702bf78d38ed2c878f30fbb9418645ac12ab86cf",
+			"urls": [
+				"bzz-raw://37c5bb6d6c0ef14d2d5201308b66a1ded5738844c1c5e1e53267dff85f1d2e7a",
+				"dweb:/ipfs/QmdYsTC63SgsPY9YYbJeAABRKSmxyfLKZLBafdmMTQpGj6"
+			]
+		},
+		"contracts/weapons.sol": {
+			"keccak256": "0x911b030367dc5d52bc235bd0714b9f25ee38550465d75e44b1e746b001f619df",
+			"urls": [
+				"bzz-raw://b60b1eb097fde7ff8a7a2ac3edc0e62a6d16636210cf18ad3e8d92edb90e95e1",
+				"dweb:/ipfs/QmapE7ce2YUS52JBJB5kBYGZC8JrvvjJo6vuLV2Re53PtE"
+			]
+		},
+		"contracts/wthell.sol": {
+			"keccak256": "0x2074e60c72a752d678b3a169202b43a80eb54cc7efea3c8a3083d2bc2e512bec",
+			"urls": [
+				"bzz-raw://6ae7804e06d2aa7a133053e33b3ed18faa9091292888682b21fd2211648a35ef",
+				"dweb:/ipfs/QmVbqSqnuDu6iYjXdRGGk8kqt41zzFqPFrPQ6QhP4WtQCN"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/math/SafeMath.sol": {
+			"keccak256": "0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52",
+			"urls": [
+				"bzz-raw://526dc85e1f9b9b45830e202568d267d93dde7a4fcccf4ad7798dadcd92304d3c",
+				"dweb:/ipfs/QmaoXMB972J3cSDLtBq3xBo4jLwqD2uzXTwujtSPqkYVhR"
+			]
+		},
+		"node_modules/@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x5f02220344881ce43204ae4a6281145a67bc52c2bb1290a791857df3d19d78f5",
+			"urls": [
+				"bzz-raw://24427744bd3e6cb73c17010119af12a318289c0253a4d9acb8576c9fb3797b08",
+				"dweb:/ipfs/QmTLDqpKRBuxGxRAmjgXt9AkXyACW3MtKzi7PYjm5iMfGC"
+			]
+		},
+		"node_modules/abdk-libraries-solidity/ABDKMath64x64.sol": {
+			"keccak256": "0x67609bc0923563d05d3a8a7c681056f9702a92120777cb0bcbb40d0afbb4a015",
+			"urls": [
+				"bzz-raw://55e817969394d4e0201a8cd3763ad6776bc9fddc986febe9b4acf120e8b7ad0d",
+				"dweb:/ipfs/QmNMve5ZjUfA8DJYic4sYTrDEAN6VyxcC7jWUTX25Wmnnp"
+			]
+		}
+	},
+	"version": 1
+}
