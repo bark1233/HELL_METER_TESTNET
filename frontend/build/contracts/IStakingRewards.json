@@ -1,0 +1,3019 @@
+{
+  "contractName": "IStakingRewards",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newMinimumStakeTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "MinimumStakeTimeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reward",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reward",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardPaid",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newDuration",
+          "type": "uint256"
+        }
+      ],
+      "name": "RewardsDurationUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Staked",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Withdrawn",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "lastTimeRewardApplicable",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "rewardPerToken",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "earned",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getRewardForDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "minimumStakeTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getStakeRewardDistributionTimeLeft",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getStakeUnlockTimeLeft",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "rewardRate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "rewardsDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "stake",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getReward",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "exit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.5+commit.f956cc89\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newMinimumStakeTime\",\"type\":\"uint256\"}],\"name\":\"MinimumStakeTimeUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"reward\",\"type\":\"uint256\"}],\"name\":\"RewardAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"reward\",\"type\":\"uint256\"}],\"name\":\"RewardPaid\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newDuration\",\"type\":\"uint256\"}],\"name\":\"RewardsDurationUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Staked\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Withdrawn\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"balanceOf\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"earned\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"exit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReward\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRewardForDuration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStakeRewardDistributionTimeLeft\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getStakeUnlockTimeLeft\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastTimeRewardApplicable\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"minimumStakeTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewardPerToken\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewardRate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rewardsDuration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"stake\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalSupply\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/C/Users/Asus/Desktop/PROJECT/hell_meter/contracts/staking/interfaces/IStakingRewards.sol\":\"IStakingRewards\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"/C/Users/Asus/Desktop/PROJECT/hell_meter/contracts/staking/interfaces/IStakingRewards.sol\":{\"keccak256\":\"0xfdfe73dd07f0e370a7e787763117613abd5625a8b361d69f53ced55bf7f2734b\",\"urls\":[\"bzz-raw://42a94b91143305f69c8652e3bd88487237ada00856df173b6abc641386d39944\",\"dweb:/ipfs/QmfKYfwYWzqcyVTc9tpkCw1CMUDvncMbQbQFkrTFcvfFjr\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "pragma solidity >=0.4.24;\n\n// https://docs.synthetix.io/contracts/source/interfaces/istakingrewards\ninterface IStakingRewards {\n    // Views\n    function lastTimeRewardApplicable() external view returns (uint256);\n\n    function rewardPerToken() external view returns (uint256);\n\n    function earned(address account) external view returns (uint256);\n\n    function getRewardForDuration() external view returns (uint256);\n\n    function totalSupply() external view returns (uint256);\n\n    function balanceOf(address account) external view returns (uint256);\n\n    function minimumStakeTime() external view returns (uint256);\n\n    function getStakeRewardDistributionTimeLeft() external view returns (uint256);\n\n    function getStakeUnlockTimeLeft() external view returns (uint256);\n\n    function rewardRate() external view returns (uint256);\n\n    function rewardsDuration() external view returns (uint256);\n\n    // Mutative\n    function stake(uint256 amount) external;\n\n    function withdraw(uint256 amount) external;\n\n    function getReward() external;\n\n    function exit() external;\n\n    // Events\n    event RewardAdded(uint256 reward);\n\n    event Staked(address indexed user, uint256 amount);\n\n    event Withdrawn(address indexed user, uint256 amount);\n\n    event RewardPaid(address indexed user, uint256 reward);\n\n    event RewardsDurationUpdated(uint256 newDuration);\n\n    event MinimumStakeTimeUpdated(uint256 newMinimumStakeTime);\n}\n",
+  "sourcePath": "C:\\Users\\Asus\\Desktop\\PROJECT\\hell_meter\\contracts\\staking\\interfaces\\IStakingRewards.sol",
+  "ast": {
+    "absolutePath": "/C/Users/Asus/Desktop/PROJECT/hell_meter/contracts/staking/interfaces/IStakingRewards.sol",
+    "exportedSymbols": {
+      "IStakingRewards": [
+        7638
+      ]
+    },
+    "id": 7639,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 7532,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:25:33"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": null,
+        "fullyImplemented": false,
+        "id": 7638,
+        "linearizedBaseContracts": [
+          7638
+        ],
+        "name": "IStakingRewards",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "80faa57d",
+            "id": 7537,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "lastTimeRewardApplicable",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7533,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "178:2:33"
+            },
+            "returnParameters": {
+              "id": 7536,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7535,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7537,
+                  "src": "204:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7534,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "204:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "203:9:33"
+            },
+            "scope": 7638,
+            "src": "145:68:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "cd3daf9d",
+            "id": 7542,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rewardPerToken",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7538,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "242:2:33"
+            },
+            "returnParameters": {
+              "id": 7541,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7540,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7542,
+                  "src": "268:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7539,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "268:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "267:9:33"
+            },
+            "scope": 7638,
+            "src": "219:58:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "008cc262",
+            "id": 7549,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "earned",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7545,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7544,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7549,
+                  "src": "299:15:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7543,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "299:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "298:17:33"
+            },
+            "returnParameters": {
+              "id": 7548,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7547,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7549,
+                  "src": "339:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7546,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "339:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "338:9:33"
+            },
+            "scope": 7638,
+            "src": "283:65:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "1c1f78eb",
+            "id": 7554,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getRewardForDuration",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7550,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "383:2:33"
+            },
+            "returnParameters": {
+              "id": 7553,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7552,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7554,
+                  "src": "409:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7551,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "409:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "408:9:33"
+            },
+            "scope": 7638,
+            "src": "354:64:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "18160ddd",
+            "id": 7559,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "totalSupply",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7555,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "444:2:33"
+            },
+            "returnParameters": {
+              "id": 7558,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7557,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7559,
+                  "src": "470:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7556,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "470:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "469:9:33"
+            },
+            "scope": 7638,
+            "src": "424:55:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "70a08231",
+            "id": 7566,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "balanceOf",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7562,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7561,
+                  "name": "account",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7566,
+                  "src": "504:15:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7560,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "504:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "503:17:33"
+            },
+            "returnParameters": {
+              "id": 7565,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7564,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7566,
+                  "src": "544:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7563,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "544:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "543:9:33"
+            },
+            "scope": 7638,
+            "src": "485:68:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "242df9e1",
+            "id": 7571,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "minimumStakeTime",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7567,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "584:2:33"
+            },
+            "returnParameters": {
+              "id": 7570,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7569,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7571,
+                  "src": "610:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7568,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "610:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "609:9:33"
+            },
+            "scope": 7638,
+            "src": "559:60:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "27ab1969",
+            "id": 7576,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStakeRewardDistributionTimeLeft",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7572,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "668:2:33"
+            },
+            "returnParameters": {
+              "id": 7575,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7574,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7576,
+                  "src": "694:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7573,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "694:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "693:9:33"
+            },
+            "scope": 7638,
+            "src": "625:78:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "f603944c",
+            "id": 7581,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getStakeUnlockTimeLeft",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7577,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "740:2:33"
+            },
+            "returnParameters": {
+              "id": 7580,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7579,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7581,
+                  "src": "766:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7578,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "766:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "765:9:33"
+            },
+            "scope": 7638,
+            "src": "709:66:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "7b0a47ee",
+            "id": 7586,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rewardRate",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7582,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "800:2:33"
+            },
+            "returnParameters": {
+              "id": 7585,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7584,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7586,
+                  "src": "826:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7583,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "826:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "825:9:33"
+            },
+            "scope": 7638,
+            "src": "781:54:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "386a9525",
+            "id": 7591,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "rewardsDuration",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7587,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "865:2:33"
+            },
+            "returnParameters": {
+              "id": 7590,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7589,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7591,
+                  "src": "891:7:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7588,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "891:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "890:9:33"
+            },
+            "scope": 7638,
+            "src": "841:59:33",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "a694fc3a",
+            "id": 7596,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "stake",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7594,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7593,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7596,
+                  "src": "937:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7592,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "937:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "936:16:33"
+            },
+            "returnParameters": {
+              "id": 7595,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "961:0:33"
+            },
+            "scope": 7638,
+            "src": "922:40:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "2e1a7d4d",
+            "id": 7601,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7599,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7598,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7601,
+                  "src": "986:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7597,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "986:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "985:16:33"
+            },
+            "returnParameters": {
+              "id": 7600,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1010:0:33"
+            },
+            "scope": 7638,
+            "src": "968:43:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "3d18b912",
+            "id": 7604,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getReward",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7602,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1035:2:33"
+            },
+            "returnParameters": {
+              "id": 7603,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1046:0:33"
+            },
+            "scope": 7638,
+            "src": "1017:30:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "body": null,
+            "documentation": null,
+            "functionSelector": "e9fad8ee",
+            "id": 7607,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "exit",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 7605,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1066:2:33"
+            },
+            "returnParameters": {
+              "id": 7606,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1077:0:33"
+            },
+            "scope": 7638,
+            "src": "1053:25:33",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7611,
+            "name": "RewardAdded",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7610,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7609,
+                  "indexed": false,
+                  "name": "reward",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7611,
+                  "src": "1116:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7608,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1116:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1115:16:33"
+            },
+            "src": "1098:34:33"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7617,
+            "name": "Staked",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7616,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7613,
+                  "indexed": true,
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7617,
+                  "src": "1151:20:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7612,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1151:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7615,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7617,
+                  "src": "1173:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7614,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1173:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1150:38:33"
+            },
+            "src": "1138:51:33"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7623,
+            "name": "Withdrawn",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7622,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7619,
+                  "indexed": true,
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7623,
+                  "src": "1211:20:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7618,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1211:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7621,
+                  "indexed": false,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7623,
+                  "src": "1233:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7620,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1233:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1210:38:33"
+            },
+            "src": "1195:54:33"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7629,
+            "name": "RewardPaid",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7628,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7625,
+                  "indexed": true,
+                  "name": "user",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7629,
+                  "src": "1272:20:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 7624,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1272:7:33",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 7627,
+                  "indexed": false,
+                  "name": "reward",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7629,
+                  "src": "1294:14:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7626,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1294:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1271:38:33"
+            },
+            "src": "1255:55:33"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7633,
+            "name": "RewardsDurationUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7632,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7631,
+                  "indexed": false,
+                  "name": "newDuration",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7633,
+                  "src": "1345:19:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7630,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1345:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1344:21:33"
+            },
+            "src": "1316:50:33"
+          },
+          {
+            "anonymous": false,
+            "documentation": null,
+            "id": 7637,
+            "name": "MinimumStakeTimeUpdated",
+            "nodeType": "EventDefinition",
+            "parameters": {
+              "id": 7636,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 7635,
+                  "indexed": false,
+                  "name": "newMinimumStakeTime",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 7637,
+                  "src": "1402:27:33",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 7634,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1402:7:33",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1401:29:33"
+            },
+            "src": "1372:59:33"
+          }
+        ],
+        "scope": 7639,
+        "src": "100:1333:33"
+      }
+    ],
+    "src": "0:1434:33"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/C/Users/Asus/Desktop/PROJECT/hell_meter/contracts/staking/interfaces/IStakingRewards.sol",
+      "exportedSymbols": {
+        "IStakingRewards": [
+          7638
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".24"
+          ]
+        },
+        "id": 7532,
+        "name": "PragmaDirective",
+        "src": "0:25:33"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "interface",
+          "documentation": null,
+          "fullyImplemented": false,
+          "linearizedBaseContracts": [
+            7638
+          ],
+          "name": "IStakingRewards",
+          "scope": 7639
+        },
+        "children": [
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "80faa57d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "lastTimeRewardApplicable",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7533,
+                "name": "ParameterList",
+                "src": "178:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7537,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7534,
+                        "name": "ElementaryTypeName",
+                        "src": "204:7:33"
+                      }
+                    ],
+                    "id": 7535,
+                    "name": "VariableDeclaration",
+                    "src": "204:7:33"
+                  }
+                ],
+                "id": 7536,
+                "name": "ParameterList",
+                "src": "203:9:33"
+              }
+            ],
+            "id": 7537,
+            "name": "FunctionDefinition",
+            "src": "145:68:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "cd3daf9d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "rewardPerToken",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7538,
+                "name": "ParameterList",
+                "src": "242:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7542,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7539,
+                        "name": "ElementaryTypeName",
+                        "src": "268:7:33"
+                      }
+                    ],
+                    "id": 7540,
+                    "name": "VariableDeclaration",
+                    "src": "268:7:33"
+                  }
+                ],
+                "id": 7541,
+                "name": "ParameterList",
+                "src": "267:9:33"
+              }
+            ],
+            "id": 7542,
+            "name": "FunctionDefinition",
+            "src": "219:58:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "008cc262",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "earned",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "account",
+                      "overrides": null,
+                      "scope": 7549,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 7543,
+                        "name": "ElementaryTypeName",
+                        "src": "299:7:33"
+                      }
+                    ],
+                    "id": 7544,
+                    "name": "VariableDeclaration",
+                    "src": "299:15:33"
+                  }
+                ],
+                "id": 7545,
+                "name": "ParameterList",
+                "src": "298:17:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7549,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7546,
+                        "name": "ElementaryTypeName",
+                        "src": "339:7:33"
+                      }
+                    ],
+                    "id": 7547,
+                    "name": "VariableDeclaration",
+                    "src": "339:7:33"
+                  }
+                ],
+                "id": 7548,
+                "name": "ParameterList",
+                "src": "338:9:33"
+              }
+            ],
+            "id": 7549,
+            "name": "FunctionDefinition",
+            "src": "283:65:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "1c1f78eb",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getRewardForDuration",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7550,
+                "name": "ParameterList",
+                "src": "383:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7554,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7551,
+                        "name": "ElementaryTypeName",
+                        "src": "409:7:33"
+                      }
+                    ],
+                    "id": 7552,
+                    "name": "VariableDeclaration",
+                    "src": "409:7:33"
+                  }
+                ],
+                "id": 7553,
+                "name": "ParameterList",
+                "src": "408:9:33"
+              }
+            ],
+            "id": 7554,
+            "name": "FunctionDefinition",
+            "src": "354:64:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "18160ddd",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "totalSupply",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7555,
+                "name": "ParameterList",
+                "src": "444:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7559,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7556,
+                        "name": "ElementaryTypeName",
+                        "src": "470:7:33"
+                      }
+                    ],
+                    "id": 7557,
+                    "name": "VariableDeclaration",
+                    "src": "470:7:33"
+                  }
+                ],
+                "id": 7558,
+                "name": "ParameterList",
+                "src": "469:9:33"
+              }
+            ],
+            "id": 7559,
+            "name": "FunctionDefinition",
+            "src": "424:55:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "70a08231",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "balanceOf",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "account",
+                      "overrides": null,
+                      "scope": 7566,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 7560,
+                        "name": "ElementaryTypeName",
+                        "src": "504:7:33"
+                      }
+                    ],
+                    "id": 7561,
+                    "name": "VariableDeclaration",
+                    "src": "504:15:33"
+                  }
+                ],
+                "id": 7562,
+                "name": "ParameterList",
+                "src": "503:17:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7566,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7563,
+                        "name": "ElementaryTypeName",
+                        "src": "544:7:33"
+                      }
+                    ],
+                    "id": 7564,
+                    "name": "VariableDeclaration",
+                    "src": "544:7:33"
+                  }
+                ],
+                "id": 7565,
+                "name": "ParameterList",
+                "src": "543:9:33"
+              }
+            ],
+            "id": 7566,
+            "name": "FunctionDefinition",
+            "src": "485:68:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "242df9e1",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "minimumStakeTime",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7567,
+                "name": "ParameterList",
+                "src": "584:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7571,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7568,
+                        "name": "ElementaryTypeName",
+                        "src": "610:7:33"
+                      }
+                    ],
+                    "id": 7569,
+                    "name": "VariableDeclaration",
+                    "src": "610:7:33"
+                  }
+                ],
+                "id": 7570,
+                "name": "ParameterList",
+                "src": "609:9:33"
+              }
+            ],
+            "id": 7571,
+            "name": "FunctionDefinition",
+            "src": "559:60:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "27ab1969",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getStakeRewardDistributionTimeLeft",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7572,
+                "name": "ParameterList",
+                "src": "668:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7576,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7573,
+                        "name": "ElementaryTypeName",
+                        "src": "694:7:33"
+                      }
+                    ],
+                    "id": 7574,
+                    "name": "VariableDeclaration",
+                    "src": "694:7:33"
+                  }
+                ],
+                "id": 7575,
+                "name": "ParameterList",
+                "src": "693:9:33"
+              }
+            ],
+            "id": 7576,
+            "name": "FunctionDefinition",
+            "src": "625:78:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "f603944c",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getStakeUnlockTimeLeft",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7577,
+                "name": "ParameterList",
+                "src": "740:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7581,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7578,
+                        "name": "ElementaryTypeName",
+                        "src": "766:7:33"
+                      }
+                    ],
+                    "id": 7579,
+                    "name": "VariableDeclaration",
+                    "src": "766:7:33"
+                  }
+                ],
+                "id": 7580,
+                "name": "ParameterList",
+                "src": "765:9:33"
+              }
+            ],
+            "id": 7581,
+            "name": "FunctionDefinition",
+            "src": "709:66:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "7b0a47ee",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "rewardRate",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7582,
+                "name": "ParameterList",
+                "src": "800:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7586,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7583,
+                        "name": "ElementaryTypeName",
+                        "src": "826:7:33"
+                      }
+                    ],
+                    "id": 7584,
+                    "name": "VariableDeclaration",
+                    "src": "826:7:33"
+                  }
+                ],
+                "id": 7585,
+                "name": "ParameterList",
+                "src": "825:9:33"
+              }
+            ],
+            "id": 7586,
+            "name": "FunctionDefinition",
+            "src": "781:54:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "386a9525",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "rewardsDuration",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "view",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7587,
+                "name": "ParameterList",
+                "src": "865:2:33"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "",
+                      "overrides": null,
+                      "scope": 7591,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7588,
+                        "name": "ElementaryTypeName",
+                        "src": "891:7:33"
+                      }
+                    ],
+                    "id": 7589,
+                    "name": "VariableDeclaration",
+                    "src": "891:7:33"
+                  }
+                ],
+                "id": 7590,
+                "name": "ParameterList",
+                "src": "890:9:33"
+              }
+            ],
+            "id": 7591,
+            "name": "FunctionDefinition",
+            "src": "841:59:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "a694fc3a",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "stake",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 7596,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7592,
+                        "name": "ElementaryTypeName",
+                        "src": "937:7:33"
+                      }
+                    ],
+                    "id": 7593,
+                    "name": "VariableDeclaration",
+                    "src": "937:14:33"
+                  }
+                ],
+                "id": 7594,
+                "name": "ParameterList",
+                "src": "936:16:33"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7595,
+                "name": "ParameterList",
+                "src": "961:0:33"
+              }
+            ],
+            "id": 7596,
+            "name": "FunctionDefinition",
+            "src": "922:40:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "2e1a7d4d",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "withdraw",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 7601,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7597,
+                        "name": "ElementaryTypeName",
+                        "src": "986:7:33"
+                      }
+                    ],
+                    "id": 7598,
+                    "name": "VariableDeclaration",
+                    "src": "986:14:33"
+                  }
+                ],
+                "id": 7599,
+                "name": "ParameterList",
+                "src": "985:16:33"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7600,
+                "name": "ParameterList",
+                "src": "1010:0:33"
+              }
+            ],
+            "id": 7601,
+            "name": "FunctionDefinition",
+            "src": "968:43:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "3d18b912",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getReward",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7602,
+                "name": "ParameterList",
+                "src": "1035:2:33"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7603,
+                "name": "ParameterList",
+                "src": "1046:0:33"
+              }
+            ],
+            "id": 7604,
+            "name": "FunctionDefinition",
+            "src": "1017:30:33"
+          },
+          {
+            "attributes": {
+              "body": null,
+              "documentation": null,
+              "functionSelector": "e9fad8ee",
+              "implemented": false,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "exit",
+              "overrides": null,
+              "scope": 7638,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7605,
+                "name": "ParameterList",
+                "src": "1066:2:33"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 7606,
+                "name": "ParameterList",
+                "src": "1077:0:33"
+              }
+            ],
+            "id": 7607,
+            "name": "FunctionDefinition",
+            "src": "1053:25:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "RewardAdded"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "reward",
+                      "overrides": null,
+                      "scope": 7611,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7608,
+                        "name": "ElementaryTypeName",
+                        "src": "1116:7:33"
+                      }
+                    ],
+                    "id": 7609,
+                    "name": "VariableDeclaration",
+                    "src": "1116:14:33"
+                  }
+                ],
+                "id": 7610,
+                "name": "ParameterList",
+                "src": "1115:16:33"
+              }
+            ],
+            "id": 7611,
+            "name": "EventDefinition",
+            "src": "1098:34:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "Staked"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "user",
+                      "overrides": null,
+                      "scope": 7617,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 7612,
+                        "name": "ElementaryTypeName",
+                        "src": "1151:7:33"
+                      }
+                    ],
+                    "id": 7613,
+                    "name": "VariableDeclaration",
+                    "src": "1151:20:33"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 7617,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7614,
+                        "name": "ElementaryTypeName",
+                        "src": "1173:7:33"
+                      }
+                    ],
+                    "id": 7615,
+                    "name": "VariableDeclaration",
+                    "src": "1173:14:33"
+                  }
+                ],
+                "id": 7616,
+                "name": "ParameterList",
+                "src": "1150:38:33"
+              }
+            ],
+            "id": 7617,
+            "name": "EventDefinition",
+            "src": "1138:51:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "Withdrawn"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "user",
+                      "overrides": null,
+                      "scope": 7623,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 7618,
+                        "name": "ElementaryTypeName",
+                        "src": "1211:7:33"
+                      }
+                    ],
+                    "id": 7619,
+                    "name": "VariableDeclaration",
+                    "src": "1211:20:33"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "amount",
+                      "overrides": null,
+                      "scope": 7623,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7620,
+                        "name": "ElementaryTypeName",
+                        "src": "1233:7:33"
+                      }
+                    ],
+                    "id": 7621,
+                    "name": "VariableDeclaration",
+                    "src": "1233:14:33"
+                  }
+                ],
+                "id": 7622,
+                "name": "ParameterList",
+                "src": "1210:38:33"
+              }
+            ],
+            "id": 7623,
+            "name": "EventDefinition",
+            "src": "1195:54:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "RewardPaid"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": true,
+                      "name": "user",
+                      "overrides": null,
+                      "scope": 7629,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 7624,
+                        "name": "ElementaryTypeName",
+                        "src": "1272:7:33"
+                      }
+                    ],
+                    "id": 7625,
+                    "name": "VariableDeclaration",
+                    "src": "1272:20:33"
+                  },
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "reward",
+                      "overrides": null,
+                      "scope": 7629,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7626,
+                        "name": "ElementaryTypeName",
+                        "src": "1294:7:33"
+                      }
+                    ],
+                    "id": 7627,
+                    "name": "VariableDeclaration",
+                    "src": "1294:14:33"
+                  }
+                ],
+                "id": 7628,
+                "name": "ParameterList",
+                "src": "1271:38:33"
+              }
+            ],
+            "id": 7629,
+            "name": "EventDefinition",
+            "src": "1255:55:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "RewardsDurationUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "newDuration",
+                      "overrides": null,
+                      "scope": 7633,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7630,
+                        "name": "ElementaryTypeName",
+                        "src": "1345:7:33"
+                      }
+                    ],
+                    "id": 7631,
+                    "name": "VariableDeclaration",
+                    "src": "1345:19:33"
+                  }
+                ],
+                "id": 7632,
+                "name": "ParameterList",
+                "src": "1344:21:33"
+              }
+            ],
+            "id": 7633,
+            "name": "EventDefinition",
+            "src": "1316:50:33"
+          },
+          {
+            "attributes": {
+              "anonymous": false,
+              "documentation": null,
+              "name": "MinimumStakeTimeUpdated"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "indexed": false,
+                      "name": "newMinimumStakeTime",
+                      "overrides": null,
+                      "scope": 7637,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint256",
+                          "type": "uint256"
+                        },
+                        "id": 7634,
+                        "name": "ElementaryTypeName",
+                        "src": "1402:7:33"
+                      }
+                    ],
+                    "id": 7635,
+                    "name": "VariableDeclaration",
+                    "src": "1402:27:33"
+                  }
+                ],
+                "id": 7636,
+                "name": "ParameterList",
+                "src": "1401:29:33"
+              }
+            ],
+            "id": 7637,
+            "name": "EventDefinition",
+            "src": "1372:59:33"
+          }
+        ],
+        "id": 7638,
+        "name": "ContractDefinition",
+        "src": "100:1333:33"
+      }
+    ],
+    "id": 7639,
+    "name": "SourceUnit",
+    "src": "0:1434:33"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.5+commit.f956cc89.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2022-08-10T23:11:07.861Z",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
