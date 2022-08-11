@@ -333,27 +333,8 @@ export default {
 </script>
 
 <style scoped>
-
-.enemy-character {
-  position: relative;
-  width: 14em;
-  height: 25em;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 115%;
-  background-color: #2e2e30cc;
-  background-image: url('../assets/cardCharacterFrame.png');
-  border: 1px solid #a28d54;
-  border-radius: 15px;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
 .encounter img {
-  max-width: 10vw;
+  max-width: 15vw;
 }
 
 .payout-info {
@@ -425,13 +406,8 @@ div.encounter.text-center {
   position: relative;
 }
 
-.encounter {
-  display : flex;
-  justify-content: center;
-}
-
 .xp-gain, .encounter-power{
-  color: #9e8a57 !important;
+  color: #efc245 !important;
 }
 
 .xp-gain, .encounter-power, .encounter-element, .victory-chance  {
@@ -440,14 +416,15 @@ div.encounter.text-center {
 }
 
 .encounter-element {
-  top: 25px;
+  top: 40px;
 }
 
 .encounter-power {
-  bottom: 55px;
+  top: 70px;
 }
 
 .victory-chance {
+  bottom: 80px;
   left: 0;
   right: 0;
   text-align: center;
@@ -455,7 +432,7 @@ div.encounter.text-center {
 }
 
 .xp-gain {
-  bottom: 20px;
+  top: 100px;
 }
 
 /* Mobile Support Classes*/
@@ -465,42 +442,12 @@ div.encounter.text-center {
 }
 
 .mobile-divider{
+  max-width: 50%;
   margin: auto;
 }
 
-.combat-enemy-container {
-  display : flex;
-  margin-bottom: 50px;
-}
-
-.enemy-container {
-  flex : 3;
-}
-
-.enemy-divider {
-  margin-top : 30px;
-}
-
-.enemy-list {
-  display: flex;
-  flex-wrap: wrap;
-  padding-left: 30px;
-  padding-right: 30px;
-}
-
-.weapon-selection {
-  border-right : 1px solid #9e8a57;
-}
-
-.weapon-header {
-    justify-content: center;
-    margin-bottom: 20px;
-    margin-top: 20px;
-}
-
-.enemy-energy {
-  top: -30px;
-  position: relative;
+.mobile-img-adjustment{
+  padding-bottom: 25px;
 }
 
 /* Needed to asjust image size, not just image column-size and other classes to accommodate that */
@@ -513,18 +460,6 @@ div.encounter.text-center {
     position: inherit;
     font-size: x-large;
   }
-  .combat-enemy-container {
-    flex-direction: column;
-  }
-  .encounter {
-    margin-top: 50px;
-  }
-  .weapon-selection {
-    border-right: none;
-  }
-  .results-panel {
-    width : 100%;
-  }
 }
 
 .encounter-button {
@@ -532,12 +467,5 @@ div.encounter.text-center {
   margin: 0 auto;
   height: 5em;
   width: 13em;
-  position: relative;
-  top: 35px;
-}
-
-.enemy-img {
-  position: relative;
-  top: -40px;
 }
 </style>
