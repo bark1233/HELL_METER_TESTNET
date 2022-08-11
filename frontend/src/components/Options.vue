@@ -31,16 +31,16 @@
       @ok="claimHell(ClaimStage.Stake)" ok-title="Next" @cancel="Cancel" cancel-title="Cancel" >
         You are proceeding to withdraw your unclaimed Hell to your wallet.
     </b-modal>
-    <b-modal class="centered-modal" ref="stake-suggestion-modal" title="Stake Hell"
-      @ok="$router.push({ name: 'select-stake-type' })" ok-only ok-title="Go to Stake" >
-        If you stake your HELL now, we will give you a 10% bonus in HELL that you can use in-game right away!
+    <b-modal class="centered-modal" ref="stake-suggestion-modal" title="Hell Withdrawal"
+      @ok="Cancel" ok-only ok-title="Cancel" >
+        Tax is being reduced 1% per day. We suggest you to wait for it !
       <a href="#" @click="claimHell(ClaimStage.Claim)"> <br>No thanks, I'd rather {{ (this.rewardsClaimTaxAsFactorBN > 0)?"pay " +
-        this.formattedTaxAmount + " in taxes and " : ""  }}forfeit my bonus </a>
+        this.formattedTaxAmount + " in taxes and " : ""  }}proceed withdrawal ! </a>
     </b-modal>
     <b-modal class="centered-modal" ref="claim-confirmation-modal" title="Claim Hell" ok-title="Sure"
       @ok="onClaimTokens()"> You are about to {{ (this.rewardsClaimTaxAsFactorBN > 0)?"pay " + formattedRewardsClaimTax +
-      " tax for early withdrawal, costing you " + this.formattedTaxAmount + " HELL. You will also " : "" }}
-      miss out on {{formattedBonusLost}} bonus HELL. Are you sure
+      " tax for early withdrawal, costing you " + this.formattedTaxAmount + " HELL." : "" }}
+      Are you sure
       you wish to continue? <b>This action cannot be undone.</b>
     </b-modal>
   </div>
