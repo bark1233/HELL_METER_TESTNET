@@ -200,6 +200,6 @@ export default Vue.extend({
   margin-right: 5px;
   align-self: center;
   position: relative;
-  top: -30px;
+  top: -34px;
 }
 </style>
