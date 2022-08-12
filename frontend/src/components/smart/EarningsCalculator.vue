@@ -12,7 +12,7 @@
           <span class="milestone-lvl-text">LVL {{getNextMilestoneLevel(currentCharacter.level)}}</span><br>
           <b-button class="btn btn-primary btn-small" @click="onShowEarningsCalculator">
             <b-icon-calculator-fill class="milestone-hint" scale="1"
-              v-tooltip.bottom="`Eranings Calculator`" v-on:click="onShowEarningsCalculator"/>
+              v-tooltip.bottom="`Earnings Calculator`"/>
               Earnings Calculator
           </b-button>
 
@@ -37,7 +37,7 @@
                   <span class="calculator-subheader">Current prices (USD)</span>
                   <div class="prices-div">
                     <div class="token-price-div">
-                      MTR: <b-form-input class="price-input" type="number" v-model="bnbPrice" />
+                      MTR: <b-form-input class="price-input" type="number" v-model="mtrPrice" />
                     </div>
                     <div class="token-price-div">
                       HELL: <b-form-input class="price-input" type="number" v-model="hellPrice" />
@@ -68,6 +68,9 @@
                   </div>
                 </div>
                 <div class="button-div">
+                  <b-button class="btn btn-primary" @click="onReset">
+                      Reset
+                  </b-button>
                   <b-button class="btn btn-primary" @click="calculateEarnings"
                     v-bind:class="[!canCalculate() ? 'disabled disabled-button' : '']">
                       Calculate
@@ -82,7 +85,7 @@
                 <span class="calculator-subheader">Weapon</span>
                 <img src="../../assets/placeholder/sword-placeholder-0.png" class="wep-placeholder">
                 <span>Stars</span>
-                <b-form-rating class="stars-picker" variant="warning" v-model="starsValue" size="sm"></b-form-rating>
+                <b-form-rating @change="refreshWeaponStats" class="stars-picker" variant="warning" v-model="starsValue" size="sm"></b-form-rating>
                 <span>Element</span>
                 <select class="form-control wep-trait-form" v-model="wepElementValue">
                   <option v-for="x in ['Earth', 'Fire', 'Lightning', 'Water']" :value="x" :key="x">{{ x }}</option>
@@ -142,8 +145,8 @@ import Web3 from 'web3';
 import BN from 'bignumber.js';
 
 interface PriceJson {
-  'avalanche-2': CoinPrice;
-  wthell: CoinPrice;
+  'meter-stable': CoinPrice;
+  cryptoblades: CoinPrice;
 }
 
 interface CoinPrice {
@@ -154,6 +157,7 @@ export default Vue.extend({
   computed: {
     ...mapGetters([
       'currentCharacter',
+      'currentWeapon',
       'fightGasOffset',
       'fightBaseline'
     ]),
@@ -176,7 +180,7 @@ export default Vue.extend({
       wepSecondStatSliderValue: 4,
       wepThirdStatSliderValue: 4,
       wepBonusPowerSliderValue: 0,
-      bnbPrice: 0,
+      mtrPrice: 0,
       hellPrice: 0,
       calculationResults: [] as number[][],
     };
@@ -184,8 +188,40 @@ export default Vue.extend({
 
   methods: {
     async onShowEarningsCalculator() {
+      if(this.currentCharacter !== null) {
+        this.characterElementValue = CharacterTrait[this.currentCharacter.trait];
+        this.levelSliderValue = this.currentCharacter.level + 1;
+      }
+
+      if(this.currentWeapon !== null) {
+        this.starsValue = this.currentWeapon.stars + 1;
+        this.wepElementValue = this.currentWeapon.element;
+        this.wepFirstStatSliderValue = this.currentWeapon.stat1Value;
+        this.wepSecondStatSliderValue = this.starsValue > 3 && this.currentWeapon.stat2Value;
+        this.wepThirdStatSliderValue = this.starsValue > 4 && this.currentWeapon.stat3Value;
+        this.wepFirstStatElementValue = this.currentWeapon.stat1;
+        this.wepSecondStatElementValue = this.starsValue > 3 && this.currentWeapon.stat2;
+        this.wepThirdStatElementValue = this.starsValue > 4 && this.currentWeapon.stat3;
+        this.wepBonusPowerSliderValue = this.currentWeapon.bonusPower;
+      }
+
       await this.fetchPrices();
       (this.$refs['earnings-calc-modal'] as any).show();
+    },
+
+    onReset() {
+      this.characterElementValue = '';
+      this.levelSliderValue =  1;
+      this.starsValue =  1;
+      this.wepElementValue =  '';
+      this.wepFirstStatElementValue =  '';
+      this.wepSecondStatElementValue =  '';
+      this.wepThirdStatElementValue =  '';
+      this.wepFirstStatSliderValue =  4;
+      this.wepSecondStatSliderValue =  4;
+      this.wepThirdStatSliderValue =  4;
+      this.wepBonusPowerSliderValue =  0;
+      this.calculationResults = [] as number[][];
     },
 
     getMinRoll(stars: number): number {
@@ -207,9 +243,9 @@ export default Vue.extend({
     },
 
     async fetchPrices() {
-      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=wthell,meter-stable&vs_currencies=usd');
+      const response = await axios.get('https://api.coingecko.com/api/v3/simple/price?ids=cryptoblades,meter-stable&vs_currencies=usd');
       const data = response.data as PriceJson;
-      this.bnbPrice = data?.['avalanche-2'].usd;
+      this.mtrPrice = data?.['meter-stable'].usd;
       this.hellPrice = 2;
     },
 
@@ -224,7 +260,7 @@ export default Vue.extend({
     calculateEarnings() {
       if(!this.canCalculate()) return;
       this.calculationResults = [];
-      const fightBnbFee = 0.0007 * this.bnbPrice;
+      const fightBnbFee = 0.0007 * this.mtrPrice;
       const weapon = this.getWeapon();
       const characterTrait = CharacterTrait[this.characterElementValue as keyof typeof CharacterTrait];
       const weaponMultiplier = GetTotalMultiplierForTrait(weapon, characterTrait);
@@ -293,15 +329,13 @@ export default Vue.extend({
       if(this.calculationResults[i][0] < 0) return 'negative-value';
       return 'positive-value';
     },
-  },
 
-  watch: {
-    starsValue(value: number) {
+    refreshWeaponStats(value: number) {
       this.wepFirstStatSliderValue = this.getMinRoll(value);
       this.wepSecondStatSliderValue = this.getMinRoll(value);
       this.wepThirdStatSliderValue = this.getMinRoll(value);
-    },
-  }
+    }
+  },
 });
 </script>
 <style scoped>
@@ -475,7 +509,7 @@ export default Vue.extend({
 }
 
 .col {
-  border: 1px solid #efc245;
+  border: 1px solid #9e8a57;
   text-align: center;
 }
 
@@ -487,6 +521,10 @@ export default Vue.extend({
   margin-top: 5px;
   display: flex;
   justify-content: center;
+}
+
+.button-div > * {
+  margin: 5px;
 }
 
 .disabled-button {

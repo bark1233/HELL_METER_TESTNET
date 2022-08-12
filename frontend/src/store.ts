@@ -229,6 +229,12 @@ export function createStore(web3: Web3) {
         };
       },
 
+      currentWeapon(state) {
+        if (state.currentWeaponId === null) return null;
+
+        return state.weapons[state.currentWeaponId];
+      },
+
       transferCooldownOfCharacterId(state) {
         return (characterId: string | number, now: number | null = null) => {
           const transferCooldown = state.characterTransferCooldowns[+characterId];
